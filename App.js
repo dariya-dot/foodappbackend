@@ -22,11 +22,13 @@ mongoose.connect(process.env.URI)
 app.get('/',(req,res)=>{
     res.send("hello")
 })
+
 app.use(express.urlencoded({extended:true}))
 app.use('/user',userRouter)
 app.use('/cart',cartRouter)
 app.use('/payment',paymentRouter)
 app.use('/order',orderRouter)
+app.use(express.static(path.join(__dirname, 'build')));
 app.listen(PORT,()=>{
     console.log(`server is running at ${PORT}`)
 })
